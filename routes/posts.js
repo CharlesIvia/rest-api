@@ -4,8 +4,14 @@ const Post = require("../models/Post");
 
 //Routes
 
-router.get("/", (req, res) => {
-  res.send("Hello World Posts.");
+//Get all the posts
+router.get("/", async (req, res) => {
+  try {
+    const posts = await Post.find();
+    res.send(posts);
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 router.get("/specific", (req, res) => {
