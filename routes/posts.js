@@ -58,4 +58,16 @@ router.delete("/:id", (req, res) => {
     });
 });
 
+//Update a post
+
+router.patch("/:id", (req, res) => {
+  const id = req.params.id;
+  Post.updateOne({ _id: req.params.id }, { $set: { title: req.body.title } })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 module.exports = router;
