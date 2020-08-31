@@ -44,4 +44,18 @@ router.get("/:id", (req, res) => {
       console.log(err);
     });
 });
+
+//Delete specific post
+
+router.delete("/:id", (req, res) => {
+  const id = req.params.id;
+  Post.findByIdAndDelete(id)
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 module.exports = router;
