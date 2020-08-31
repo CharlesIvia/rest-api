@@ -14,9 +14,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/specific", (req, res) => {
-  res.send("Hello World Specific Posts.");
-});
+//Submit a posts
 
 router.post("/", (req, res) => {
   const post = new Post({
@@ -28,6 +26,19 @@ router.post("/", (req, res) => {
     .save()
     .then((data) => {
       res.json(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//Get specific post
+
+router.get("/:id", (req, res) => {
+  const id = req.params.id;
+  Post.findById(id)
+    .then((result) => {
+      res.json(result);
     })
     .catch((err) => {
       console.log(err);
