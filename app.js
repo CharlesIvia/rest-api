@@ -4,12 +4,14 @@ require("dotenv/config");
 const app = express();
 
 //Routes
+//Import Routes
+
+const postRoutes = require("./routes/posts");
+
+app.use("/posts", postRoutes);
+
 app.get("/", (req, res) => {
   res.send("Hello World.");
-});
-
-app.get("/posts", (req, res) => {
-  res.send("Hello World Posts.");
 });
 
 //Connect to db
